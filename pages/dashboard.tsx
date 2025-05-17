@@ -3,7 +3,8 @@ import { supabase } from '../utils/supabaseClient';
 import { useRouter } from 'next/router';
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
+  import type { User } from '@supabase/supabase-js';
+const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -33,3 +34,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
