@@ -1,0 +1,1 @@
+// Middleware para proteger rotas
