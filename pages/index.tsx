@@ -1,3 +1,19 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { supabase } from '../utils/supabaseClient';
+
 export default function Home() {
-  return <h1>Bem-vindo ao Mapa do Fisco</h1>;
+  const router = useRouter();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        router.push('/dashboard');
+      } else {
+        router.push('/login');
+      }
+    });
+  }, [router]);
+
+  return <p>Redirecionando...</p>;
 }
