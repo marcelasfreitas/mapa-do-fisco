@@ -7,7 +7,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  async function handleLogin(e) {
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
@@ -20,8 +20,20 @@ export default function Login() {
   return (
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
-      <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+      />
       <button type="submit">Entrar</button>
     </form>
   );
